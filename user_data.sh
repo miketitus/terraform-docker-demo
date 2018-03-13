@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# user data scripts automatically execute as root user, so sudo not required
+# user_data scripts automatically execute as root user, so sudo is not required
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
