@@ -6,16 +6,18 @@ resource "aws_key_pair" "splice_demo" {
 }
 
 # TODO security group
+# TODO mod count.index?
 
 resource "aws_instance" "splice_demo" {
   ami                         = "${var.ec2_ami}"
   associate_public_ip_address = "true"
   availability_zone           = "${lookup(var.ec2_availability_zones, count.index)}"
-  count                       = 2
+  count                       = 1
   instance_type               = "t2.micro"
   key_name                    = "${aws_key_pair.splice_demo.key_name}"
+  user_data                   = "${file("user_data.txt")}"
 
   tags {
-    Name = "Splice Demo  ${count.index}"
+    Name = "Splice Demo ${count.index}"
   }
 }
