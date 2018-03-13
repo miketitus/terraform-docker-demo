@@ -2,7 +2,7 @@
 
 # Security Group for load balancer
 
-resource "aws_security_group" "splice_demo" {
+resource "aws_security_group" "splice_demo_elb" {
   name = "Splice-Demo-ELB-SG"
 
   ingress {
@@ -55,6 +55,6 @@ resource "aws_elb" "splice_demo" {
   }
 
   security_groups = [
-    "${aws_security_group.splice_demo.id}",
+    "${aws_security_group.splice_demo_elb.id}",
   ]
 }
