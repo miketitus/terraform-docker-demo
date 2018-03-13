@@ -5,3 +5,7 @@ provider "aws" {
   secret_key = "${var.aws_secret_key}"
   region     = "${var.aws_region}"
 }
+
+output "url" {
+  value = "http://${aws_elb.splice_demo.dns_name}/"
+}
