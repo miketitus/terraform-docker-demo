@@ -9,7 +9,8 @@ variable "aws_secret_key" {
 }
 
 variable "aws_region" {
-  default = "us-west-2"
+  description = "US West Oregon"
+  default     = "us-west-2"
 }
 
 variable "ec2_ami" {
@@ -18,6 +19,8 @@ variable "ec2_ami" {
 }
 
 variable "ec2_availability_zones" {
+  description = "Map of all availability zones in us-west-2"
+
   default = {
     "0" = "us-west-2a"
     "1" = "us-west-2b"
@@ -26,5 +29,6 @@ variable "ec2_availability_zones" {
 }
 
 variable "ec2_instance_count" {
-  default = 2
+  description = "The number of EC2 instances to run behind the load balancer"
+  default     = 2
 }
