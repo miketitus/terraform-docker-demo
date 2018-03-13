@@ -1,6 +1,6 @@
 # terraform-docker-demo
 
-A Terraform script to launch a cluster of EC2 instances, fronted by a (classic) elastic load balancer.  Each EC2 instance runs a single nginx Docker container (based on the latest official nginx Docker image).
+A Terraform configuration to launch a cluster of EC2 instances, fronted by a (classic) elastic load balancer.  Each EC2 instance runs a single nginx Docker container (based on the latest official nginx Docker image).  The load balancer and EC2 instances are launched in the default VPC, but do not use the default security groups.  Instead, they use custom security groups created by the Terraform configuration.
 
 ## Access credentials
 AWS access credentials must be supplied on the command line (see example below).  This Terraform script was tested in my own AWS account with a user that has the `AmazonEC2FullAccess` policy.  It was also tested in the Splice-supplied AWS account with a user that has the `AdministratorAccess` policy.
