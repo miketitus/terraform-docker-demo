@@ -17,4 +17,4 @@ $ terraform destroy -var "aws_access_key=······" -var "aws_secret_key=··
 ```
 
 ## URL
-The default nginx homepage can be viewed at http://splice-demo-elb-564546257.us-west-2.elb.amazonaws.com/
+Applying this Terraform configuration returns the load balancer's public URL on the last line of output.  This URL can be used to view the default nginx homepage.
