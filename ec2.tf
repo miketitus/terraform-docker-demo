@@ -10,9 +10,9 @@ resource "aws_key_pair" "splice_demo" {
 
 resource "aws_instance" "splice_demo" {
   ami                         = "${var.ec2_ami}"
-  associate_public_ip_address = "true"
+  associate_public_ip_address = true
   availability_zone           = "${lookup(var.ec2_availability_zones, count.index)}"
-  count                       = 1
+  count                       = 2
   instance_type               = "t2.micro"
   key_name                    = "${aws_key_pair.splice_demo.key_name}"
   user_data                   = "${file("user_data.sh")}"
