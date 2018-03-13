@@ -8,13 +8,13 @@ AWS access credentials must be supplied on the command line (See example below).
 ## Command Line Examples
 To launch the EC2 demo cluster:
 ```
-$ terraform plan -out=aws.tfplan -var "aws_access_key=****" -var "aws_secret_key=****"
+$ terraform plan -out=aws.tfplan -var "aws_access_key=······" -var "aws_secret_key=······"
 $ terraform apply aws.tfplan
 ```
 To teardown the EC2 demo cluster:
 ```
-$ terraform destroy -var "aws_access_key=****" -var "aws_secret_key=****"
+$ terraform destroy -var "aws_access_key=······" -var "aws_secret_key=······"
 ```
 
 ## URL
-The default nginx homepage can be viewed at [http://splice-demo-elb-564546257.us-west-2.elb.amazonaws.com/]
+The default nginx homepage can be viewed at http://splice-demo-elb-564546257.us-west-2.elb.amazonaws.com/
