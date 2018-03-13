@@ -15,7 +15,7 @@ resource "aws_instance" "splice_demo" {
   count                       = 1
   instance_type               = "t2.micro"
   key_name                    = "${aws_key_pair.splice_demo.key_name}"
-  user_data                   = "${file("user_data.txt")}"
+  user_data                   = "${file("user_data.sh")}"
 
   tags {
     Name = "Splice Demo ${count.index}"
