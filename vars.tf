@@ -24,3 +24,7 @@ variable "ec2_availability_zones" {
     "2" = "us-west-2c"
   }
 }
+
+variable "ec2_instance_count" {
+  default = 2
+}
