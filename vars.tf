@@ -19,8 +19,8 @@ variable "ec2_ami" {
 
 variable "ec2_availability_zones" {
   default = {
-    "0" = "us-west-1a"
-    "1" = "us-west-1b"
-    "2" = "us-west-1c"
+    "0" = "us-west-2a"
+    "1" = "us-west-2b"
+    "2" = "us-west-2c"
   }
 }
