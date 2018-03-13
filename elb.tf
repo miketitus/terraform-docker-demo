@@ -23,8 +23,7 @@ resource "aws_security_group" "splice_demo_elb" {
   }
 }
 
-# Note: this uses the old Classic load balancer rather than
-# the more modern (and more complex) Application load balancer.
+# Use an old Classic load balancer rather than a more modern (and more complex) Application load balancer.
 
 resource "aws_elb" "splice_demo" {
   name                      = "Splice-Demo-ELB"
@@ -34,7 +33,7 @@ resource "aws_elb" "splice_demo" {
     "${aws_instance.splice_demo.*.availability_zone}",
   ]
 
-  # short interval and threshold values reduce the time for instances to become "healthy"
+  # short interval and threshold values to reduce the time for instances to become "healthy"
   health_check {
     unhealthy_threshold = 2
     healthy_threshold   = 2
@@ -43,6 +42,7 @@ resource "aws_elb" "splice_demo" {
     interval            = 20
   }
 
+  # references ec2 instances created in ec2.tf
   instances = [
     "${aws_instance.splice_demo.*.id}",
   ]
@@ -54,6 +54,7 @@ resource "aws_elb" "splice_demo" {
     lb_protocol       = "http"
   }
 
+  # references security group created above
   security_groups = [
     "${aws_security_group.splice_demo_elb.id}",
   ]
