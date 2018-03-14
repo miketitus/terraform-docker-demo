@@ -3,3 +3,4 @@
 *.tfplan
 terraform.tfstate
 terraform.tfstate.backup
+tdd.code-workspace
