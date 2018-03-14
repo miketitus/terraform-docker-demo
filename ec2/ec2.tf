@@ -28,8 +28,8 @@ resource "aws_security_group" "splice_demo_ec2" {
 resource "aws_instance" "splice_demo" {
   ami                         = "${var.ec2_ami}"
   associate_public_ip_address = false
-  availability_zone           = "${lookup(var.ec2_availability_zones, count.index)}"
-  count                       = "${var.ec2_instance_count}"
+  availability_zone           = "${element(data.aws_availability_zones.available.names, count.index)}"
+  count                       = "${length(data.aws_availability_zones.available.names)}"
   instance_type               = "t2.micro"
   user_data                   = "${file("user_data.sh")}"
 

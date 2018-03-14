@@ -30,7 +30,7 @@ resource "aws_elb" "splice_demo" {
   cross_zone_load_balancing = true
 
   availability_zones = [
-    "${aws_instance.splice_demo.*.availability_zone}",
+    "${data.aws_availability_zones.available.names}",
   ]
 
   # short interval and threshold values to reduce the time for instances to become "healthy"

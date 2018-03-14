@@ -18,17 +18,4 @@ variable "ec2_ami" {
   default     = "ami-79873901"
 }
 
-variable "ec2_availability_zones" {
-  description = "Map of all availability zones in us-west-2"
-
-  default = {
-    "0" = "us-west-2a"
-    "1" = "us-west-2b"
-    "2" = "us-west-2c"
-  }
-}
-
-variable "ec2_instance_count" {
-  description = "The number of EC2 instances to run behind the load balancer"
-  default     = 2
-}
+data "aws_availability_zones" "available" {}
