@@ -1,11 +1,11 @@
 # # # vars.tf # # #
 
 variable "aws_access_key" {
-  description = "AWS access key, must pass on command line"
+  description = "AWS access key, must pass on command line using -var"
 }
 
 variable "aws_secret_key" {
-  description = "AWS secret access key, must pass on command line"
+  description = "AWS secret access key, must pass on command line using -var"
 }
 
 variable "aws_region" {
@@ -18,17 +18,10 @@ variable "ec2_ami" {
   default     = "ami-79873901"
 }
 
-variable "ec2_availability_zones" {
-  description = "Map of all availability zones in us-west-2"
-
-  default = {
-    "0" = "us-west-2a"
-    "1" = "us-west-2b"
-    "2" = "us-west-2c"
-  }
+variable "ec2_instance_type" {
+  description = "Use small and cheap EC2 instances"
+  default     = "t2.micro"
 }
 
-variable "ec2_instance_count" {
-  description = "The number of EC2 instances to run behind the load balancer"
-  default     = 2
-}
+# dynamically retrieves all availability zones for current region
+data "aws_availability_zones" "available" {}
