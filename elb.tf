@@ -2,7 +2,7 @@
 resource "aws_security_group" "splice_demo_elb" {
   name        = "Splice-Demo-ELB-SG"
   description = "Allow incoming HTTP traffic only"
-  vpc_id      = "${aws_vpc.splice_demo.id}"
+  vpc_id      = "${aws_vpc.public.id}"
 
   ingress {
     protocol    = "tcp"
@@ -23,7 +23,7 @@ resource "aws_security_group" "splice_demo_elb" {
 resource "aws_elb" "splice_demo" {
   name                      = "Splice-Demo-ELB"
   cross_zone_load_balancing = true
-  subnets                   = ["${data.aws_subnet_ids.splice_demo.ids}"]
+  subnets                   = ["${data.aws_subnet_ids.public.ids}"]
 
   # short interval and threshold values to reduce the time for instances to become "healthy"
   health_check {

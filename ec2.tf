@@ -2,7 +2,7 @@
 resource "aws_security_group" "splice_demo_ec2" {
   name        = "Splice-Demo-EC2-SG"
   description = "Allow incoming HTTP traffic only"
-  vpc_id      = "${aws_vpc.splice_demo.id}"
+  vpc_id      = "${aws_vpc.public.id}"
 
   ingress {
     protocol    = "tcp"
@@ -23,12 +23,11 @@ resource "aws_security_group" "splice_demo_ec2" {
 resource "aws_instance" "splice_demo" {
   ami                         = "${var.ec2_ami}"
   associate_public_ip_address = false
-
-  #availability_zone           = "${element(data.aws_availability_zones.available.names, count.index)}"
-  count         = "${length(data.aws_availability_zones.available.names)}"
-  instance_type = "${var.ec2_instance_type}"
-  subnet_id     = "${element(data.aws_subnet_ids.splice_demo.ids, count.index)}"
-  user_data     = "${file("user_data.sh")}"
+  count                       = "${length(data.aws_availability_zones.available.names)}"
+  depends_on                  = ["aws_subnet.public"]
+  instance_type               = "${var.ec2_instance_type}"
+  subnet_id                   = "${element(data.aws_subnet_ids.public.ids, count.index)}"
+  user_data                   = "${file("user_data.sh")}"
 
   # references security group created above
   vpc_security_group_ids = ["${aws_security_group.splice_demo_ec2.id}"]
