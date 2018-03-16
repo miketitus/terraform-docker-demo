@@ -49,6 +49,12 @@ resource "aws_route" "public" {
   route_table_id         = "${aws_route_table.public.id}"
 }
 
+# associate route table with vpc
+resource "aws_main_route_table_association" "public" {
+  vpc_id         = "${aws_vpc.public.id}"
+  route_table_id = "${aws_route_table.public.id}"
+}
+
 # and associate route table with each subnet
 resource "aws_route_table_association" "public" {
   count          = "${length(data.aws_availability_zones.available.names)}"
