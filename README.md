@@ -3,9 +3,9 @@
 A Terraform configuration to launch a cluster of EC2 instances, fronted by a (classic) elastic load balancer.  Each EC2 instance runs a single nginx Docker container (based on the latest official nginx Docker image).  The load balancer and EC2 instances are launched in the default VPC, but do not use the default security groups.  Instead, they use custom security groups created by the Terraform configuration.
 
 ## Files
-ec2.tf - Launches EC2 instances, upon initialization each instance installs Docker and the nginx docker image.
+aws.tf - AWS Provider.
+ec2.tf - Launches EC2 instances, during initialization each instance installs Docker and the nginx docker image.
 elb.tf - Launches elastic load balancer for EC2 instances running nginx.
-main.tf - AWS Provider.
 vars.tf - Used by other files, sets AWS region, calculates availability zones, etc.
 
 ## Access credentials
