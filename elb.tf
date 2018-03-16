@@ -1,9 +1,8 @@
-# # # elb.tf # # #
-
 # Security Group for load balancer
 
 resource "aws_security_group" "splice_demo_elb" {
   name = "Splice-Demo-ELB-SG"
+  description = "Allow incoming HTTP traffic only"
 
   ingress {
     protocol    = "tcp"
@@ -13,13 +12,10 @@ resource "aws_security_group" "splice_demo_elb" {
   }
 
   egress {
+    protocol  = "-1"
     from_port = 0
     to_port   = 0
-    protocol  = "-1"
-
-    cidr_blocks = [
-      "0.0.0.0/0",
-    ]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
 
@@ -27,11 +23,8 @@ resource "aws_security_group" "splice_demo_elb" {
 
 resource "aws_elb" "splice_demo" {
   name                      = "Splice-Demo-ELB"
+  availability_zones = ["${data.aws_availability_zones.available.names}"]
   cross_zone_load_balancing = true
-
-  availability_zones = [
-    "${aws_instance.splice_demo.*.availability_zone}",
-  ]
 
   # short interval and threshold values to reduce the time for instances to become "healthy"
   health_check {
@@ -58,4 +51,10 @@ resource "aws_elb" "splice_demo" {
   security_groups = [
     "${aws_security_group.splice_demo_elb.id}",
   ]
+}
+
+# ELB DNS is generated dynamically, return URL so that it can be used
+
+output "url" {
+  value = "http://${aws_elb.splice_demo.dns_name}/"
 }
