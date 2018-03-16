@@ -1,5 +1,3 @@
-# # # elb.tf # # #
-
 # Security Group for load balancer
 
 resource "aws_security_group" "splice_demo_elb" {

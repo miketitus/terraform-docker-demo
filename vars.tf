@@ -1,5 +1,3 @@
-# # # vars.tf # # #
-
 variable "aws_access_key" {
   description = "AWS access key, must pass on command line using -var"
 }

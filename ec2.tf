@@ -1,5 +1,3 @@
-# # # ec2.tf # # #
-
 # Security Group for EC2 instances
 
 resource "aws_security_group" "splice_demo_ec2" {
