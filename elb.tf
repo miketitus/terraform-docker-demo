@@ -1,8 +1,8 @@
-# Security Group for load balancer
-
+# security group for load balancer
 resource "aws_security_group" "splice_demo_elb" {
-  name = "Splice-Demo-ELB-SG"
+  name        = "Splice-Demo-ELB-SG"
   description = "Allow incoming HTTP traffic only"
+  vpc_id      = "${aws_vpc.splice_demo.id}"
 
   ingress {
     protocol    = "tcp"
@@ -12,19 +12,18 @@ resource "aws_security_group" "splice_demo_elb" {
   }
 
   egress {
-    protocol  = "-1"
-    from_port = 0
-    to_port   = 0
+    protocol    = "-1"
+    from_port   = 0
+    to_port     = 0
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
 
-# Use an old Classic load balancer rather than a more modern (and more complex) Application load balancer.
-
+# use an old Classic load balancer rather than a more modern (and more complex) Application load balancer.
 resource "aws_elb" "splice_demo" {
   name                      = "Splice-Demo-ELB"
-  availability_zones = ["${data.aws_availability_zones.available.names}"]
   cross_zone_load_balancing = true
+  subnets                   = ["${data.aws_subnet_ids.splice_demo.ids}"]
 
   # short interval and threshold values to reduce the time for instances to become "healthy"
   health_check {
@@ -54,7 +53,6 @@ resource "aws_elb" "splice_demo" {
 }
 
 # ELB DNS is generated dynamically, return URL so that it can be used
-
 output "url" {
   value = "http://${aws_elb.splice_demo.dns_name}/"
 }
