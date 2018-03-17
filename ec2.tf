@@ -21,7 +21,7 @@ resource "aws_security_group" "splice_demo_ec2" {
 
 # EC2 instances, one per availability zone
 resource "aws_instance" "splice_demo" {
-  ami                         = "${var.ec2_ami}"
+  ami                         = "${lookup(var.ec2_amis, var.aws_region)}"
   associate_public_ip_address = true
   count                       = "${length(data.aws_availability_zones.available.names)}"
   depends_on                  = ["aws_subnet.public"]
