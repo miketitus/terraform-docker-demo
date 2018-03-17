@@ -18,18 +18,3 @@ variable "ec2_ami" {
   description = "Ubuntu Server 16.04 LTS (HVM)"
   default     = "ami-79873901"
 }
-
-variable "ec2_instance_type" {
-  description = "Use small and cheap EC2 instances"
-  default     = "t2.micro"
-}
-
-variable "vpc_cidr" {
-    description = "CIDR for the whole VPC"
-    default = "10.0.0.0/16"
-}
-
-variable "az_a_subnet_cidr" {
-    description = "CIDR for AZ A"
-    default = "10.0.0.0/24"
-}

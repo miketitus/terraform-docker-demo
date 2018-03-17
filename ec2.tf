@@ -25,7 +25,7 @@ resource "aws_instance" "splice_demo" {
   associate_public_ip_address = true
   count                       = "${length(data.aws_availability_zones.available.names)}"
   depends_on                  = ["aws_subnet.public"]
-  instance_type               = "${var.ec2_instance_type}"
+  instance_type               = "t2.micro"
   subnet_id                   = "${element(data.aws_subnet_ids.public.ids, count.index)}"
   user_data                   = "${file("user_data.sh")}"
 
