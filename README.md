@@ -1,6 +1,6 @@
 # terraform-docker-demo
 
-A Terraform configuration to launch a cluster of EC2 instances, fronted by a (classic) elastic load balancer.  Each EC2 instance runs a single nginx Docker container (based on the latest official nginx Docker image).  The load balancer and EC2 instances are launched in a **custom VPC**, and use custom security groups.
+A Terraform configuration to launch a cluster of EC2 instances, fronted by a (classic) elastic load balancer.  Each EC2 instance runs a single nginx Docker container (based on the latest official nginx Docker image).  One EC2 instance is launched in each availability zone of the current region (see Regions below).  The load balancer and EC2 instances are launched in a **custom VPC**, and use custom security groups.
 
 Applying the configuration takes about 30 seconds (in US West Oregon), and another two or three minutes for the EC2 instances to become healthy and for the load balancer DNS record to propagate.
 
