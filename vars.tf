@@ -21,7 +21,7 @@ variable "ec2_amis" {
   default = {
     "us-east-1" = "ami-43a15f3e"
     "us-east-2" = "ami-916f59f4"
-    "us-west-1" = "ami-4e79ed36"
+    "us-west-1" = "ami-07585467"
     "us-west-2" = "ami-79873901"
   }
 }
