@@ -14,7 +14,14 @@ variable "aws_region" {
 # dynamically retrieves all availability zones for current region
 data "aws_availability_zones" "available" {}
 
-variable "ec2_ami" {
+variable "ec2_amis" {
   description = "Ubuntu Server 16.04 LTS (HVM)"
-  default     = "ami-79873901"
+  type        = "map"
+
+  default = {
+    "us-east-1" = "ami-43a15f3e"
+    "us-east-2" = "ami-916f59f4"
+    "us-west-1" = "ami-4e79ed36"
+    "us-west-2" = "ami-79873901"
+  }
 }
