@@ -9,7 +9,7 @@ Applying the configuration takes about 30 seconds (in US West Oregon), and anoth
 + `ec2.tf` - Launches EC2 instances, during initialization each instance installs Docker and the nginx Docker image.
 + `elb.tf` - Launches elastic load balancer for EC2 instances running nginx.
 + `vars.tf` - Used by other files, sets default AWS region, calculates availability zones, etc.
-+ `vpc.tf` - Launches VPC, subnets, route tables, etc.  **EXTRA CREDIT**  :)
++ `vpc.tf` - Launches VPC, subnets, route tables, etc.
 
 ## Access credentials
 AWS access credentials must be supplied on the command line (see example below).  This Terraform script was tested in my own AWS account with a user that has the `AmazonEC2FullAccess` and `AmazonVPCFullAccess` policies.  It was also tested in the Splice-supplied AWS account with a user that has the `AdministratorAccess` policy.
